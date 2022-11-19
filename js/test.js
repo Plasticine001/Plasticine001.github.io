@@ -93,10 +93,17 @@ $('#dataset').change(function() {
   if ($(this).val() == 'OCT'){
     img1.src = './imgs/cropped-oct106.png';
     img2.src = './imgs/Group1_Volume2-5.png';
+    url = git_raw_url + '/json_files/json_MRI_CT.json'
   }
   if ($(this).val() == 'MRI-CT'){
     img1.src = './imgs/img0012_tcia_MRslice_131.png';
     img2.src = './imgs/trans_img0012_tcia_MRslice_131.png';
+    url = git_raw_url + '/json_files/json_MRI_CT.json'
+  }
+
+  if ($(this).val() == 'cardiac'){
+    img1.src = './imgs/.png';
+    img2.src = './imgs/.png';
     url = git_raw_url + '/json_files/json_MRI_CT.json'
   }
   
