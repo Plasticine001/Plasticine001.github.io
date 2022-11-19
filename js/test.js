@@ -52,7 +52,8 @@ var myImg  = $('#canvas').get(0);
 var myImg2 = $('#canvas2').get(0);
 const img1 = new Image();
 const img2 = new Image();
-var arr_vel = null;
+var arr_vel_x = null;
+var arr_vel_y = null;
 img1.src = './imgs/cropped-oct106.png';
 img2.src = './imgs/Group1_Volume2-5.png';
 var ctx  = $('#canvas').get(0).getContext('2d');
@@ -134,7 +135,9 @@ function get_vel(url){
     // data: {array:obj_vel},
     // D_V_xy, D_V_yx
     success:  function(jsonData) {
-        arr_vel = jsonArrayTo2D(jsonData.array); 
+        
+        arr_vel_x = jsonArrayTo2D(jsonData.D_V_x); 
+        arr_vel_y = jsonArrayTo2D(jsonData.D_V_y); 
       }, 
     });
   // $.getJSON(url, function(data) {
@@ -166,7 +169,8 @@ function getPosition(event){
     drawCoordinates(x,y,ctx,img1);
 
     var ctx2 =  $('#canvas2').get(0).getContext("2d");
-    dis_x = (arr_vel[parseInt(x)][parseInt(y)]+1)*256;
+    dis_x = arr_vel_x[parseInt(x)][parseInt(y)];
+    dis_y = arr_vel_y[parseInt(x)][parseInt(y)];
     console.log(dis_x);
 
     drawCoordinates(x+dis_x,y,ctx2,img2);
