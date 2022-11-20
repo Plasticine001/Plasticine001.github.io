@@ -120,7 +120,7 @@ function jsonArrayTo2D(arrayOfObjects){
     header.forEach((col, i) => thisRow[i] = obj[col] || '')
     AoA.push(thisRow);
   })
-  AoA.unshift(header);
+  // AoA.unshift(header);
   return AoA;
 }
 
@@ -132,12 +132,10 @@ function get_vel(url){
     dataType: "json",
     url: url,
     async: false,
-    // data: {array:obj_vel},
-    // D_V_xy, D_V_yx
     success:  function(jsonData) {
-        
         arr_vel_x = jsonArrayTo2D(jsonData.D_V_x); 
         arr_vel_y = jsonArrayTo2D(jsonData.D_V_y); 
+        // console.log(arr_vel_x[0][0]);
       }, 
     });
   // $.getJSON(url, function(data) {
@@ -169,12 +167,13 @@ function getPosition(event){
     drawCoordinates(x,y,ctx,img1);
 
     var ctx2 =  $('#canvas2').get(0).getContext("2d");
-    dis_x = arr_vel_x[parseInt(x)][parseInt(y)];
-    dis_y = arr_vel_y[parseInt(x)][parseInt(y)];
+    dis_x = arr_vel_x[parseInt(x)][parseInt(y)]/2.0;
+    dis_y = arr_vel_y[parseInt(x)][parseInt(y)]/2.0;
     console.log(dis_x);
 
-    drawCoordinates(x+dis_x,y,ctx2,img2);
+    drawCoordinates(x+dis_x,y+dis_y,ctx2,img2);
     $('#t_x').text(String(x+dis_x)) ;
+    $('#t_y').text(String(y+dis_y)) ;
 }
 
 function drawCoordinates(x,y, ctx, img){	
