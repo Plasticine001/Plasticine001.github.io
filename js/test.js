@@ -99,7 +99,7 @@ $('#dataset').change(function() {
   if ($(this).val() == 'MRI-CT'){
     img1.src = './imgs/img0012_tcia_MRslice_131.png';
     img2.src = './imgs/trans_img0012_tcia_MRslice_131.png';
-    url = git_raw_url + '/json_files/json_MRI_CT.json'
+    url = git_raw_url + '/json_files/json_MRI_CT_2.json'
   }
 
   if ($(this).val() == 'cardiac'){
@@ -171,7 +171,7 @@ function getPosition(event){
     dis_y = arr_vel_y[parseInt(x)][parseInt(y)]/2.0;
     console.log(dis_x);
 
-    drawCoordinates(x+dis_x,y+dis_y,ctx2,img2);
+    drawCoordinates(x-dis_x,y-dis_y,ctx2,img2);
     $('#t_x').text(String(x+dis_x)) ;
     $('#t_y').text(String(y+dis_y)) ;
 }
