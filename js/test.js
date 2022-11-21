@@ -172,10 +172,10 @@ function getPosition(event){
     // dis_x = arr_vel_x[x][Math.abs(256-y)]/2.0+127;
     // dis_y = arr_vel_y[x][Math.abs(256-y)]/2.0+127;
 
-    dis_x = arr_vel_x[x][y];
-    dis_y = arr_vel_y[x][y];;
-    new_x = x-dis_x;
-    new_y = y-dis_y;
+    dis_x = arr_vel_x[y][x];
+    dis_y = arr_vel_y[y][x];
+    new_x = x-dis_y;
+    new_y = dis_x-y;
 
     // dis_x = arr_vel_x[y][x];
     // dis_y = arr_vel_y[y][x];
