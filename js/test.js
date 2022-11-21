@@ -98,7 +98,7 @@ function readJsonFile(jsonFile) {
 $('#dataset').change(function() {
   if ($(this).val() == 'OCT'){
     img1.src = './imgs/oct_source.png';
-    img2.src = './imgs/oct_translated.jpg';
+    img2.src = './imgs/Group1_Volume1-10.png';
     url = def_url
   }
   if ($(this).val() == 'MRI-CT'){
