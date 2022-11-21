@@ -58,7 +58,7 @@ img1.src = './imgs/oct_source.png';
 img2.src = './imgs/oct_translated.jpg';
 var ctx  = $('#canvas').get(0).getContext('2d');
 var ctx2 = $('#canvas2').get(0).getContext('2d');
-url = git_raw_url + '/json_files/json_oct_2.json'
+url = git_raw_url + '/json_files/json_oct.json'
 get_vel(url);
 img1.onload = function () {
     ctx.imageSmoothingEnabled = false;
@@ -96,7 +96,7 @@ $('#dataset').change(function() {
   if ($(this).val() == 'OCT'){
     img1.src = './imgs/oct_source.png';
     img2.src = './imgs/oct_translated.jpg';
-    url = git_raw_url + '/json_files/json_oct_2.json'
+    url = git_raw_url + '/json_files/json_oct.json'
   }
   if ($(this).val() == 'MRI-CT'){
     img1.src = './imgs/MRI_source_131.png';
@@ -179,12 +179,12 @@ function getPosition(event){
 
     dis_x = arr_vel_x[255-y][x];
     dis_y = arr_vel_y[255-y][x];
-    new_x = dis_x;
-    new_y = Math.abs(256-dis_y);
+    new_x = x+dis_y;
+    new_y = dis_x;
 
     // new_x = dis_x;
     // new_y = Math.abs(255-dis_y);
-    drawCoordinates2(x,y,ctx2,img2,new_x,new_y);
+    drawCoordinates2(x, y, ctx2,img2, new_x, new_y);
     drawArrow(ctx2, x, y, new_x,new_y, 0.5, 'black');
 
     $('#t_x').text(String(new_x.toFixed(2))) ;
