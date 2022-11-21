@@ -104,7 +104,7 @@ $('#dataset').change(function() {
   if ($(this).val() == 'MRI-CT'){
     img1.src = './imgs/MRI_source_131.png';
     img2.src = './imgs/CT_translated_131.png';
-    url = git_raw_url + '/json_files/json_MRI_CT_2.json'
+    url = git_raw_url + '/json_files/json_MRI_CT.json'
   }
 
   if ($(this).val() == 'cardiac'){
