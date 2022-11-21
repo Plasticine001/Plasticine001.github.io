@@ -16,3 +16,10 @@ canvas, img {
     border: 0px solid #ddd;
  }
 
+
+ .carousel-item .carousel-caption {
+  position: static;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  text-align: center;
+}
