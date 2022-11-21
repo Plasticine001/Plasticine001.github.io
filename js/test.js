@@ -58,6 +58,8 @@ img1.src = './imgs/oct_source.png';
 img2.src = './imgs/oct_translated.jpg';
 var ctx  = $('#canvas').get(0).getContext('2d');
 var ctx2 = $('#canvas2').get(0).getContext('2d');
+url = git_raw_url + '/json_files/json_oct.json'
+get_vel(url);
 img1.onload = function () {
     ctx.imageSmoothingEnabled = false;
     ctx.mozImageSmoothingEnabled = false;
@@ -171,24 +173,76 @@ function getPosition(event){
     dis_y = arr_vel_y[x][y]/2.0;
     console.log(dis_x);
 
-    new_x = x-dis_y
-    new_y = y-dis_x
-    drawCoordinates(new_x,new_y,ctx2,img2);
-
+    new_x = x-dis_y;
+    new_y = y-dis_x;
+    drawCoordinates2(x,y,ctx2,img2,new_x,new_y);
+    drawArrow(ctx2, x, y, new_x,new_y, 0.5, 'black');
 
     $('#t_x').text(String(new_x.toFixed(2))) ;
     $('#t_y').text(String(new_y.toFixed(2))) ;
 }
 
-function drawCoordinates(x,y, ctx, img){	
+function drawCoordinates(x,y, ctx, img, style="#ff2626"){	
     // const img1 = new Image()
     // img1.src = './imgs/cropped-oct106.png';
     // var ctx =  $('#canvas').get(0).getContext("2d");
     ctx.drawImage(img,0 ,0 ,256, 256);
     ctx.imageSmoothingEnabled = false;
-    ctx.fillStyle = "#ff2626"; // Red color
+    ctx.fillStyle = style; // Red color
     ctx.beginPath();
     ctx.arc(x, y, pointSize, 0, Math.PI * 2, true);
     ctx.fill();
 }
 
+
+function drawCoordinates2(x,y, ctx, img, x2,y2){	
+  ctx.drawImage(img,0 ,0 ,256, 256);
+  ctx.imageSmoothingEnabled = false;
+  ctx.fillStyle = "#ff2626"; // Red color
+  ctx.beginPath();
+  ctx.arc(x, y, pointSize, 0, Math.PI * 2, true);
+  ctx.fill();
+  ctx.fillStyle = "#00ff00"; // green color
+  ctx.beginPath();
+  ctx.arc(x2, y2, pointSize, 0, Math.PI * 2, true);
+  ctx.fill();
+}
+
+
+function drawArrow(ctx, fromx, fromy, tox, toy, arrowWidth, color){
+  //variables to be used when creating the arrow
+  var headlen = 10;
+  var angle = Math.atan2(toy-fromy,tox-fromx);
+
+  ctx.save();
+  ctx.strokeStyle = color;
+
+  //starting path of the arrow from the start square to the end square
+  //and drawing the stroke
+  ctx.beginPath();
+  ctx.moveTo(fromx, fromy);
+  ctx.lineTo(tox, toy);
+  ctx.lineWidth = arrowWidth;
+  ctx.stroke();
+
+  //starting a new path from the head of the arrow to one of the sides of
+  //the point
+  ctx.beginPath();
+  ctx.moveTo(tox, toy);
+  ctx.lineTo(tox-headlen*Math.cos(angle-Math.PI/7),
+             toy-headlen*Math.sin(angle-Math.PI/7));
+
+  //path from the side point of the arrow, to the other side point
+  ctx.lineTo(tox-headlen*Math.cos(angle+Math.PI/7),
+             toy-headlen*Math.sin(angle+Math.PI/7));
+
+  //path from the side point back to the tip of the arrow, and then
+  //again to the opposite side point
+  ctx.lineTo(tox, toy);
+  ctx.lineTo(tox-headlen*Math.cos(angle-Math.PI/7),
+             toy-headlen*Math.sin(angle-Math.PI/7));
+
+  //draws the paths created above
+  ctx.stroke();
+  ctx.restore();
+}
