@@ -169,12 +169,14 @@ function getPosition(event){
     drawCoordinates(x,y,ctx,img1);
 
     var ctx2 =  $('#canvas2').get(0).getContext("2d");
-    dis_x = arr_vel_x[x][y]/2.0;
-    dis_y = arr_vel_y[x][y]/2.0;
+    dis_x = arr_vel_x[x][y]/2.0+127;
+    dis_y = arr_vel_y[x][y]/2.0+127;
     console.log(dis_x);
 
-    new_x = x-dis_y;
-    new_y = y-dis_x;
+    // new_x = x-dis_y;
+    // new_y = y-dis_x;
+    new_x = dis_y;
+    new_y = dis_x;
     drawCoordinates2(x,y,ctx2,img2,new_x,new_y);
     drawArrow(ctx2, x, y, new_x,new_y, 0.5, 'black');
 
