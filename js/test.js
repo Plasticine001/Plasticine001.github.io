@@ -55,10 +55,10 @@ const img2 = new Image();
 var arr_vel_x = null;
 var arr_vel_y = null;
 img1.src = './imgs/oct_source.png';
-img2.src = './imgs/Group1_Volume2-5.png';
+img2.src = './imgs/oct_target.png';
 var ctx  = $('#canvas').get(0).getContext('2d');
 var ctx2 = $('#canvas2').get(0).getContext('2d');
-def_url = git_raw_url + '/json_files/json_oct_.json'
+def_url = git_raw_url + '/json_files/json_oct.json'
 
 url = def_url
 
@@ -98,7 +98,7 @@ function readJsonFile(jsonFile) {
 $('#dataset').change(function() {
   if ($(this).val() == 'OCT'){
     img1.src = './imgs/oct_source.png';
-    img2.src = './imgs/Group1_Volume2-5.png';
+    img2.src = './imgs/oct_target.png';
     url = def_url
   }
   if ($(this).val() == 'MRI-CT'){
@@ -140,7 +140,7 @@ function get_vel(url){
     success:  function(jsonData) {
         arr_vel_x = jsonArrayTo2D(jsonData.D_V_x); 
         arr_vel_y = jsonArrayTo2D(jsonData.D_V_y); 
-        // console.log(arr_vel_x[0][0]);
+        console.log(arr_vel_x);
       }, 
     });
   // $.getJSON(url, function(data) {
@@ -182,8 +182,8 @@ function getPosition(event){
 
     dis_x = arr_vel_x[255-y][x];
     dis_y = arr_vel_y[255-y][x];
-    new_x = x-dis_x;
-    new_y = y-dis_y;
+    new_x = x+dis_y;
+    new_y = y-dis_x;
 
     // new_x = dis_x;
     // new_y = Math.abs(255-dis_y);
