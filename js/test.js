@@ -175,8 +175,8 @@ function getPosition(event){
 
     // new_x = x-dis_y;
     // new_y = y-dis_x;
-    new_x = dis_x;
-    new_y = dis_y;
+    new_x = dis_y;
+    new_y = dis_x;
     drawCoordinates2(x,y,ctx2,img2,new_x,new_y);
     drawArrow(ctx2, x, y, new_x,new_y, 0.5, 'black');
 
