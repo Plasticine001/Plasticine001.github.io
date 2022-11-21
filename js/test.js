@@ -55,7 +55,7 @@ const img2 = new Image();
 var arr_vel_x = null;
 var arr_vel_y = null;
 img1.src = './imgs/oct_source.png';
-img2.src = './imgs/oct_translated.jpg';
+img2.src = './imgs/Group1_Volume2-5.jpg';
 var ctx  = $('#canvas').get(0).getContext('2d');
 var ctx2 = $('#canvas2').get(0).getContext('2d');
 def_url = git_raw_url + '/json_files/json_oct.json'
@@ -98,7 +98,7 @@ function readJsonFile(jsonFile) {
 $('#dataset').change(function() {
   if ($(this).val() == 'OCT'){
     img1.src = './imgs/oct_source.png';
-    img2.src = './imgs/Group1_Volume1-10.png';
+    img2.src = './imgs/Group1_Volume2-5.png';
     url = def_url
   }
   if ($(this).val() == 'MRI-CT'){
@@ -175,8 +175,8 @@ function getPosition(event){
     // dis_x = arr_vel_x[x][Math.abs(256-y)]/2.0+127;
     // dis_y = arr_vel_y[x][Math.abs(256-y)]/2.0+127;
 
-    dis_x = arr_vel_x[x][y]/127.5*128;
-    dis_y = arr_vel_y[x][y]/127.5*128;
+    dis_x = arr_vel_x[x][y];
+    dis_y = arr_vel_y[x][y];
     new_x = x-dis_y;
     new_y = y-dis_x;
 
@@ -192,6 +192,9 @@ function getPosition(event){
 
     $('#t_x').text(String(new_x.toFixed(2))) ;
     $('#t_y').text(String(new_y.toFixed(2))) ;
+
+    $('#d_x').text(String(dis_y.toFixed(2))) ;
+    $('#d_y').text(String(dis_x.toFixed(2))) ;
 }
 
 function drawCoordinates(x,y, ctx, img, style="#ff2626"){	
