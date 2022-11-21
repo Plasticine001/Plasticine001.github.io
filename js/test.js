@@ -55,10 +55,10 @@ const img2 = new Image();
 var arr_vel_x = null;
 var arr_vel_y = null;
 img1.src = './imgs/oct_source.png';
-img2.src = './imgs/Group1_Volume2-5.jpg';
+img2.src = './imgs/Group1_Volume2-5.png';
 var ctx  = $('#canvas').get(0).getContext('2d');
 var ctx2 = $('#canvas2').get(0).getContext('2d');
-def_url = git_raw_url + '/json_files/json_oct.json'
+def_url = git_raw_url + '/json_files/json_oct_.json'
 
 url = def_url
 
@@ -175,15 +175,15 @@ function getPosition(event){
     // dis_x = arr_vel_x[x][Math.abs(256-y)]/2.0+127;
     // dis_y = arr_vel_y[x][Math.abs(256-y)]/2.0+127;
 
-    dis_x = arr_vel_x[x][y];
-    dis_y = arr_vel_y[x][y];
-    new_x = x-dis_y;
-    new_y = y-dis_x;
+    // dis_x = arr_vel_x[Math.abs(256-x)][y];
+    // dis_y = arr_vel_y[Math.abs(256-x)][y];
+    // new_x = x-dis_y;
+    // new_y = y-dis_x;
 
-    // dis_x = arr_vel_x[255-y][x];
-    // dis_y = arr_vel_y[255-y][x];
-    // new_x = dis_x;
-    // new_y = 256-dis_y;
+    dis_x = arr_vel_x[255-y][x];
+    dis_y = arr_vel_y[255-y][x];
+    new_x = x-dis_x;
+    new_y = y-dis_y;
 
     // new_x = dis_x;
     // new_y = Math.abs(255-dis_y);
