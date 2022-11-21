@@ -54,8 +54,8 @@ const img1 = new Image();
 const img2 = new Image();
 var arr_vel_x = null;
 var arr_vel_y = null;
-img1.src = './imgs/cropped-oct106.png';
-img2.src = './imgs/Group1_Volume2-5.png';
+img1.src = './imgs/oct_source.png';
+img2.src = './imgs/oct_translated.jpg';
 var ctx  = $('#canvas').get(0).getContext('2d');
 var ctx2 = $('#canvas2').get(0).getContext('2d');
 img1.onload = function () {
@@ -92,20 +92,20 @@ function readJsonFile(jsonFile) {
 
 $('#dataset').change(function() {
   if ($(this).val() == 'OCT'){
-    img1.src = './imgs/cropped-oct106.png';
-    img2.src = './imgs/Group1_Volume2-5.png';
-    url = git_raw_url + '/json_files/json_MRI_CT.json'
+    img1.src = './imgs/oct_source.png';
+    img2.src = './imgs/oct_translated.jpg';
+    url = git_raw_url + '/json_files/json_oct.json'
   }
   if ($(this).val() == 'MRI-CT'){
-    img1.src = './imgs/img0012_tcia_MRslice_131.png';
-    img2.src = './imgs/trans_img0012_tcia_MRslice_131.png';
+    img1.src = './imgs/MRI_source_131.png';
+    img2.src = './imgs/CT_translated_131.png';
     url = git_raw_url + '/json_files/json_MRI_CT_2.json'
   }
 
   if ($(this).val() == 'cardiac'){
     img1.src = './imgs/.png';
-    img2.src = './imgs/.png';
-    url = git_raw_url + '/json_files/json_MRI_CT.json'
+    img2.src = './imgs/cardiac_translated.png';
+    url = git_raw_url + '/json_files/json_cardiac.json'
   }
   
   get_vel(url);
