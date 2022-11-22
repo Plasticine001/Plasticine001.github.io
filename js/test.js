@@ -58,7 +58,7 @@ img1.src = './imgs/oct_source.png';
 img2.src = './imgs/oct_target.png';
 var ctx  = $('#canvas').get(0).getContext('2d');
 var ctx2 = $('#canvas2').get(0).getContext('2d');
-def_url = git_raw_url + '/json_files/json_oct.json'
+def_url = git_raw_url + '/json_files/json_oct_2.json'
 
 url = def_url
 
@@ -140,7 +140,7 @@ function get_vel(url){
     success:  function(jsonData) {
         arr_vel_x = jsonArrayTo2D(jsonData.D_V_x); 
         arr_vel_y = jsonArrayTo2D(jsonData.D_V_y); 
-        console.log(arr_vel_x);
+
       }, 
     });
   // $.getJSON(url, function(data) {
@@ -174,17 +174,25 @@ function getPosition(event){
     var ctx2 =  $('#canvas2').get(0).getContext("2d");
     // dis_x = arr_vel_x[x][Math.abs(256-y)]/2.0+127;
     // dis_y = arr_vel_y[x][Math.abs(256-y)]/2.0+127;
+    var new_x = null;
+    var new_y = null;
+    if ( $( "#dataset" ).val() == 'MRI-CT'){
+        dis_x = arr_vel_x[x][y];
+        dis_y = arr_vel_y[x][y];
+        new_x = x-dis_y;
+        new_y = y-dis_x;
 
-    // dis_x = arr_vel_x[y][x];
-    // dis_y = arr_vel_y[y][x];
-    // new_x = x-dis_y;
-    // new_y = y-dis_x;
-
-    dis_x = arr_vel_x[255-y][x];
-    dis_y = arr_vel_y[255-y][x];
-    new_x = dis_x;
-    new_y = 255- dis_y;
-
+    }else{
+      // dis_x = arr_vel_x[255-y][x];
+      // dis_y = arr_vel_y[255-y][x];
+      // new_x = dis_x;
+      // new_y = 225-dis_y;
+      dis_x = arr_vel_x[x][y];
+      dis_y = arr_vel_y[x][y];
+      new_x = x-dis_y;
+      new_y = y-dis_x;
+    }
+   
     // new_x = dis_x;
     // new_y = Math.abs(255-dis_y);
     drawCoordinates2(x, y, ctx2,img2, new_x, new_y);
