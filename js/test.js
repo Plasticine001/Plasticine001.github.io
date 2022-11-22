@@ -58,7 +58,7 @@ img1.src = './imgs/oct_source.png';
 img2.src = './imgs/oct_target.png';
 var ctx  = $('#canvas').get(0).getContext('2d');
 var ctx2 = $('#canvas2').get(0).getContext('2d');
-def_url = git_raw_url + '/json_files/json_oct_2.json'
+def_url = git_raw_url + '/json_files/json_oct.json'
 
 url = def_url
 
@@ -187,8 +187,8 @@ function getPosition(event){
       dis_y = arr_vel_y[255-y][x];
       new_x = dis_x;
       new_y = 225-dis_y;
-      // dis_x = arr_vel_x[x][y];
-      // dis_y = arr_vel_y[x][y];
+      // dis_x = arr_vel_x[y][x];
+      // dis_y = arr_vel_y[y][x];
       // new_x = x-dis_y;
       // new_y = y-dis_x;
     }
