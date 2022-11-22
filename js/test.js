@@ -175,15 +175,15 @@ function getPosition(event){
     // dis_x = arr_vel_x[x][Math.abs(256-y)]/2.0+127;
     // dis_y = arr_vel_y[x][Math.abs(256-y)]/2.0+127;
 
-    // dis_x = arr_vel_x[Math.abs(256-x)][y];
-    // dis_y = arr_vel_y[Math.abs(256-x)][y];
-    // new_x = x-dis_y;
-    // new_y = y-dis_x;
+    dis_x = arr_vel_x[x][y];
+    dis_y = arr_vel_y[x][y];
+    new_x = x-dis_y;
+    new_y = y-dis_x;
 
-    dis_x = arr_vel_x[255-y][x];
-    dis_y = arr_vel_y[255-y][x];
-    new_x = x+dis_y;
-    new_y = y+dis_x;
+    // dis_x = arr_vel_x[255-y][x];
+    // dis_y = arr_vel_y[255-y][x];
+    // new_x = x+dis_y;
+    // new_y = y+dis_x;
 
     // new_x = dis_x;
     // new_y = Math.abs(255-dis_y);
