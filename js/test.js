@@ -183,7 +183,7 @@ function getPosition(event){
     dis_x = arr_vel_x[255-y][x];
     dis_y = arr_vel_y[255-y][x];
     new_x = x+dis_y;
-    new_y = (y-dis_x);
+    new_y = y+dis_x;
 
     // new_x = dis_x;
     // new_y = Math.abs(255-dis_y);
