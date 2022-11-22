@@ -183,14 +183,14 @@ function getPosition(event){
         new_y = y-dis_x;
 
     }else{
-      // dis_x = arr_vel_x[255-y][x];
-      // dis_y = arr_vel_y[255-y][x];
-      // new_x = dis_x;
-      // new_y = 225-dis_y;
-      dis_x = arr_vel_x[x][y];
-      dis_y = arr_vel_y[x][y];
-      new_x = x-dis_y;
-      new_y = y-dis_x;
+      dis_x = arr_vel_x[255-y][x];
+      dis_y = arr_vel_y[255-y][x];
+      new_x = dis_x;
+      new_y = 225-dis_y;
+      // dis_x = arr_vel_x[x][y];
+      // dis_y = arr_vel_y[x][y];
+      // new_x = x-dis_y;
+      // new_y = y-dis_x;
     }
    
     // new_x = dis_x;
