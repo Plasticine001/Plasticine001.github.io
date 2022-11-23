@@ -185,20 +185,20 @@ function getPosition(event){
         new_y = y-dis_x;
 
     }else{
-      dis_x = arr_vel_x[255-y][x];
-      dis_y = arr_vel_y[255-y][x];
-      new_x = x+dis_y;
-      new_y = Math.abs((y-dis_x));
-        // dis_x = arr_vel_x[x][y];
-        // dis_y = arr_vel_y[x][y];
-        // new_x = x-dis_y;
-        // new_y = y-dis_x;
+      // dis_x = arr_vel_x[255-y][x];
+      // dis_y = arr_vel_y[255-y][x];
+      // new_x = x-dis_y;
+      // new_y = y-dis_x;
+        dis_x = arr_vel_x[255-x][y];
+        dis_y = arr_vel_y[255-x][y];
+        new_x = x-dis_y;
+        new_y = y-dis_x;
     }
    
     // new_x = dis_x;
     // new_y = Math.abs(255-dis_y);
     drawCoordinates2(x, y, ctx2,img2, new_x, new_y);
-    drawArrow(ctx2, x, y, new_x,new_y, 0.5, 'black');
+    drawArrow(ctx2, x, y, new_x,new_y, 0.5, 'blue');
 
     $('#t_x').text(String(new_x.toFixed(2))) ;
     $('#t_y').text(String(new_y.toFixed(2))) ;
