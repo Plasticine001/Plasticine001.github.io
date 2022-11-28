@@ -23,3 +23,8 @@ canvas, img {
   padding-bottom: 20px;
   text-align: center;
 }
+
+  .btn-success.custom-btn {
+    background-color: #00ff00;
+    border-color:  #00ff00;
+  }
