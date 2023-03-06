@@ -72,16 +72,12 @@ const img1 = new Image();
 const img2 = new Image();
 var arr_vel_x = null;
 var arr_vel_y = null;
-// img1.src = './imgs/cropped-oct106.png';
-// img2.src = './imgs/oct_t.jpg';
-// def_url = git_raw_url + '/json_files/json_oct.json'
-// img1.src = './imgs/MRI_source_131.png';
-// img2.src = './imgs/CT_translated_131.png';
-// url = git_raw_url + '/json_files/json_MRI_CT.json'
+
+
 var ctx  = $('#canvas').get(0).getContext('2d');
 var ctx2 = $('#canvas2').get(0).getContext('2d');
-// pre_img0012_tcia_MRslice_131_CT_translated_131
-var source = 'pre_img0012_tcia_MRslice_131';
+
+var source = 'pre_img0012_tcia_MRslice_132';
 var target = 'CT_translated_131';
 var d = 'chest';
 init_img_vel(source, target, d, tag='')
@@ -131,7 +127,7 @@ $('#dataset').change(function() {
       var d = 'oct';
   }
   if ($(this).val() == 'MRI-CT'){
-    var source = 'pre_img0012_tcia_MRslice_131';
+    var source = 'pre_img0012_tcia_MRslice_132';
     var target = 'CT_translated_131';
     var d = 'chest';
   }
@@ -196,7 +192,8 @@ function getPosition(event){
     var rect = canvas.getBoundingClientRect();
     var x = Math.ceil(event.clientX - rect.left);
     var y = Math.ceil(event.clientY - rect.top );
-
+    x = Math.max(0, Math.min(x, 255))
+    y = Math.max(0, Math.min(y, 255))
     document.getElementById("x").innerHTML = x;
     document.getElementById("y").innerHTML = y;
 
@@ -204,33 +201,19 @@ function getPosition(event){
     drawCoordinates(x,y,ctx,img1);
 
     var ctx2 =  $('#canvas2').get(0).getContext("2d");
-    // dis_x = arr_vel_x[x][Math.abs(256-y)]/2.0+127;
-    // dis_y = arr_vel_y[x][Math.abs(256-y)]/2.0+127;
+
     var new_x = null;
     var new_y = null;
-    if ( $( "#dataset" ).val() == 'MRI-CT' | $( "#dataset" ).val() == 'cardiac'){
-        // dis_x = arr_vel_x[x][y];
-        // dis_y = arr_vel_y[x][y];
-        // new_x = x-dis_y;
-        // new_y = y-dis_x;
-        dis_x = arr_vel_x[y][x];
-        dis_y = arr_vel_y[y][x];
-        new_x = dis_x;
-        new_y = dis_y;
+  
+    dis_x = arr_vel_x[y][x];
+    dis_y = arr_vel_y[y][x];
+    new_x = dis_x;
+    new_y = dis_y;
 
-    }else{
-      // dis_x = arr_vel_x[255-y][x];
-      // dis_y = arr_vel_y[255-y][x];
-      // new_x = x-dis_y;
-      // new_y = y-dis_x;
-      dis_x = arr_vel_x[y][x];
-      dis_y = arr_vel_y[y][x];
-      new_x = dis_x;
-      new_y = dis_y;
-    }
+  
    
-    // new_x = dis_x;
-    // new_y = Math.abs(255-dis_y);
+   
+   
     drawCoordinates2(x, y, ctx2,img2, new_x, new_y);
     drawArrow(ctx2, x, y, new_x,new_y, 0.5, 'black');
 
@@ -242,9 +225,6 @@ function getPosition(event){
 }
 
 function drawCoordinates(x,y, ctx, img, style="#ff2626"){	
-    // const img1 = new Image()
-    // img1.src = './imgs/cropped-oct106.png';
-    // var ctx =  $('#canvas').get(0).getContext("2d");
     ctx.drawImage(img,0 ,0 ,256, 256);
     ctx.imageSmoothingEnabled = false;
     ctx.fillStyle = style; // Red color
